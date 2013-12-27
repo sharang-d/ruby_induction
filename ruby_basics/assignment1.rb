@@ -9,7 +9,16 @@ print "6) Find the positions where RUBY occurs in the string 1.\nPositions: "
 string1.scan(/RUBY/) { print "#{Regexp.last_match.offset(0).first} " }
 
 puts "\n7) Create array of words in string 1 & print them using a recursive function."
-
+@words = string1.split
+def print_words(iterator = @words.size.pred)
+  if iterator.zero?
+    puts @words[iterator] 
+  else
+    print_words(iterator.pred)  
+    puts @words[iterator]
+  end
+end
+print_words()
 
 puts '8) Capitalise string 1'
 puts string1.upcase
