@@ -4,14 +4,19 @@ puts "string2 = #{string2 = "RUBY does not require (or support) explicit type de
 
 puts '5) Find occurrence of RUBY from string 1.'
 p string1.scan(/RUBY/)
-puts '6) Find the position where RUBY occurs in the string 1.'
-puts string1.index('RUBY')
-puts '7) Create array of words in string 1 & print them using a recursive function.'
+
+print "6) Find the positions where RUBY occurs in the string 1.\nPositions: "
+string1.scan(/RUBY/) { print "#{Regexp.last_match.offset(0).first} " }
+
+puts "\n7) Create array of words in string 1 & print them using a recursive function."
+
 
 puts '8) Capitalise string 1'
 puts string1.upcase
+
 puts '9) Combine string 1 & 2.'
 puts string1 + string2
+
 =begin
 10) Print current date.
 11) print 12th Jan 2012
