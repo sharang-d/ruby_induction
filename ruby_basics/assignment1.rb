@@ -26,15 +26,30 @@ puts string1.upcase
 puts '9) Combine string 1 & 2.'
 puts string1 + string2
 
+puts '10) Print current date.'
+puts Time.now.strftime('%d %B %Y')
+
+puts '11) print 12th Jan 2012'
+
+puts '12) add 7 days in current date'
+puts (Time.now + (60 * 60 * 24 * 7)).strftime('%d %B %Y')
+
+
+puts '13) Cut the string 1 into 4 parts & print it.'
+part_size, extra_chars = string1.size.divmod 4
+parts = (1..4).to_a.map do |part_number| 
+  "Part #{part_number}: #{string1[(part_number.pred * part_size)..((part_number * part_size).pred)]}" 
+end
+parts[3] << string1[(4 * part_size)..((4 * part_size) + extra_chars)]
+parts.each { |part| puts part }
+
+puts "14) Divide the string 1 by occurrences of '.'. Combine the array in reverse word sequence"
+
+
+puts '15) Remove the HTML characters from string.'
+puts "16) Print the 'RUBY' word from string 1 by traversing it using string functions"
+puts '17) Find the length of string 1 & 2.'
 =begin
-10) Print current date.
-11) print 12th Jan 2012
-12) add 7 days in current date
-13) Cut the string 1 into 4 parts & print it.
-14) Divide the string 1 by occurrences of '.'. Combine the array in reverse word sequence
-15) Remove the HTML characters from string.
-16) Print the 'RUBY' word from string 1 by traversing it using string functions
-17) Find the length of string 1 & 2.
 18) Compare two dates. (12-04-2010 & 12-05-2011). Calculate the days between these two dates.
 19) Print date after 20 days from current date
 20) Print date in array format.
