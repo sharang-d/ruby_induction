@@ -1,3 +1,21 @@
+def make_parts(string1, number_of_parts)
+  part_size, extra_chars = string1.size.divmod number_of_parts
+  parts = (1..number_of_parts).to_a.map do |part_number| 
+    string1[(part_number.pred * part_size)..((part_number * part_size).pred)] 
+  end
+  parts[number_of_parts.pred] << string1[(number_of_parts * part_size)..((number_of_parts * part_size) + extra_chars)]
+  parts
+end
+
+def print_words(iterator = @words.size.pred)
+  if iterator.zero?
+    puts @words[iterator] 
+  else
+    print_words(iterator.pred)  
+    puts @words[iterator]
+  end
+end
+
 puts "string1 = #{string1 = 'RUBY parses a file by looking for <br/> one of the special tags that tells it to start interpreting the text as RUBY code. The parser then executes all of the code it finds until it runs into a RUBY closing <br/> tag.'}"
 
 puts "string2 = #{string2 = "RUBY does not require (or support) explicit type definition in variable declaration; a variable's type is determined by the context in which the variable is used."}"
@@ -10,14 +28,6 @@ string1.scan(/RUBY/) { print "#{Regexp.last_match.offset(0).first} " }
 
 puts "\n7) Create array of words in string 1 & print them using a recursive function."
 @words = string1.split
-def print_words(iterator = @words.size.pred)
-  if iterator.zero?
-    puts @words[iterator] 
-  else
-    print_words(iterator.pred)  
-    puts @words[iterator]
-  end
-end
 print_words()
 
 puts '8) Capitalise string 1'
@@ -34,15 +44,6 @@ puts '11) print 12th Jan 2012'
 puts '12) add 7 days in current date'
 puts (Time.now + (60 * 60 * 24 * 7)).strftime('%d %B %Y')
 
-def make_parts(string1, number_of_parts)
-  part_size, extra_chars = string1.size.divmod number_of_parts
-  parts = (1..number_of_parts).to_a.map do |part_number| 
-    string1[(part_number.pred * part_size)..((part_number * part_size).pred)] 
-  end
-  parts[number_of_parts.pred] << string1[(number_of_parts * part_size)..((number_of_parts * part_size) + extra_chars)]
-  parts
-end
-
 puts '13) Cut the string 1 into 4 parts & print it.'
 make_parts(string1, 4).each.with_index(1) { |part, index| puts "Part #{index}: #{part}" }
 
@@ -50,8 +51,11 @@ puts "14) Divide the string 1 by occurrences of '.'. Combine the array in revers
 puts make_parts(string1, string1.count('.')).map { |part| part.split.reverse.join(' ') }.join
 
 puts '15) Remove the HTML characters from string.'
+puts "String1 with HTML tags removed: #{string1.gsub('<br/>','')}"
+
 puts "16) Print the 'RUBY' word from string 1 by traversing it using string functions"
 puts '17) Find the length of string 1 & 2.'
+
 =begin
 18) Compare two dates. (12-04-2010 & 12-05-2011). Calculate the days between these two dates.
 19) Print date after 20 days from current date
