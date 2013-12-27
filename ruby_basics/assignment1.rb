@@ -34,17 +34,20 @@ puts '11) print 12th Jan 2012'
 puts '12) add 7 days in current date'
 puts (Time.now + (60 * 60 * 24 * 7)).strftime('%d %B %Y')
 
+def make_parts(string1, number_of_parts)
+  part_size, extra_chars = string1.size.divmod number_of_parts
+  parts = (1..number_of_parts).to_a.map do |part_number| 
+    string1[(part_number.pred * part_size)..((part_number * part_size).pred)] 
+  end
+  parts[number_of_parts.pred] << string1[(number_of_parts * part_size)..((number_of_parts * part_size) + extra_chars)]
+  parts
+end
 
 puts '13) Cut the string 1 into 4 parts & print it.'
-part_size, extra_chars = string1.size.divmod 4
-parts = (1..4).to_a.map do |part_number| 
-  "Part #{part_number}: #{string1[(part_number.pred * part_size)..((part_number * part_size).pred)]}" 
-end
-parts[3] << string1[(4 * part_size)..((4 * part_size) + extra_chars)]
-parts.each { |part| puts part }
+make_parts(string1, 4).each.with_index(1) { |part, index| puts "Part #{index}: #{part}" }
 
 puts "14) Divide the string 1 by occurrences of '.'. Combine the array in reverse word sequence"
-
+puts make_parts(string1, string1.count('.')).map { |part| part.split.reverse.join(' ') }.join
 
 puts '15) Remove the HTML characters from string.'
 puts "16) Print the 'RUBY' word from string 1 by traversing it using string functions"
