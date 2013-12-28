@@ -79,12 +79,6 @@ string1.split.each { |word| puts word if word=='RUBY' }
 puts '17) Find the length of string 1 & 2.'
 puts "Length of string1: #{string1.length}\nLength of string2: #{string2.length}"
 
-puts '21) write regex for email for only weboniselab domain'
-puts '/^[a-z][a-z0-9_\-.]+@weboniselab\.com$/i'
-
-puts "22) write regex for phone no format : '+78' followed by 8 nos. e.g. +7898328732"
-puts '/^\+78\d{8}$/'
-
 puts '18) Compare two dates. (12-04-2010 & 12-05-2011). Calculate the days between these two dates.'
 puts "Number of days in between: #{(Date.parse('12-05-2011') - Date.parse('12-04-2010')).to_i}"
 
@@ -95,11 +89,19 @@ puts '20) Print date in array format.'
 today = Date.today
 p [today.day, today.month, today.year]
 
+puts '21) write regex for email for only weboniselab domain'
+puts '/^[a-z][a-z0-9_\-.]+@weboniselab\.com$/i'
+
+puts "22) write regex for phone no format : '+78' followed by 8 nos. e.g. +7898328732"
+puts '/^\+78\d{8}$/'
+
+
+puts '24) write regex for this format: a.bcdef0000000000000e+05'
+puts '/^\d\.\d{5}0{13}e\+05$/'
+
 =begin
 23) finding site name and type from a url string using regex
  http://www.xyz.com/classid/17950142?type=mandatory
-24) write regex for this format
- a.bcdef0000000000000e+05
 25) Write Regex for Following date format
 e.g 1) 11th Nov 2013 12:34:46 ,e.g 2) 1st Dec 2010 8:59:43
 =end
