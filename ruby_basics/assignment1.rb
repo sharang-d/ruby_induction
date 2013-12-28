@@ -15,6 +15,7 @@ def ordinalize(number)
   "#{number}#{suffix}"
 end
 
+# cut string1 in number_of_parts
 def make_parts(string1, number_of_parts)
   part_size, extra_chars = string1.size.divmod number_of_parts
   parts = (1..number_of_parts).to_a.map do |part_number| 
@@ -24,12 +25,13 @@ def make_parts(string1, number_of_parts)
   parts
 end
 
+# print @words recursively
 def print_words(iterator = @words.size.pred)
   if iterator.zero?
-    puts @words[iterator] 
+    print "#{@words[iterator]}, "
   else
     print_words(iterator.pred)  
-    puts @words[iterator]
+    print "#{@words[iterator]}, "
   end
 end
 
@@ -47,7 +49,7 @@ puts "\n7) Create array of words in string 1 & print them using a recursive func
 @words = string1.split
 print_words
 
-puts '8) Capitalise string 1'
+puts "\n8) Capitalise string 1"
 puts string1.upcase
 
 puts '9) Combine string 1 & 2.'
@@ -64,6 +66,7 @@ puts '12) add 7 days in current date'
 puts (Time.now + (60 * 60 * 24 * 7)).strftime('%d %B %Y')
 
 puts '13) Cut the string 1 into 4 parts & print it.'
+# cut into 4 parts with equal character count
 make_parts(string1, 4).each.with_index(1) { |part, index| puts "Part #{index}: #{part}" }
 
 puts "14) Divide the string 1 by occurrences of '.'. Combine the array in reverse word sequence"
@@ -94,7 +97,6 @@ puts '/^[a-z][a-z0-9_\-.]+@weboniselab\.com$/i'
 
 puts "22) write regex for phone no format : '+78' followed by 8 nos. e.g. +7898328732"
 puts '/^\+78\d{8}$/'
-
 
 puts '24) write regex for this format: a.bcdef0000000000000e+05'
 puts '/^\d\.\d{5}0{13}e\+05$/'
