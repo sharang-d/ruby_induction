@@ -28,7 +28,7 @@ string1.scan(/RUBY/) { print "#{Regexp.last_match.offset(0).first} " }
 
 puts "\n7) Create array of words in string 1 & print them using a recursive function."
 @words = string1.split
-print_words()
+print_words
 
 puts '8) Capitalise string 1'
 puts string1.upcase
@@ -54,15 +54,20 @@ puts '15) Remove the HTML characters from string.'
 puts "String1 with HTML tags removed: #{string1.gsub('<br/>','')}"
 
 puts "16) Print the 'RUBY' word from string 1 by traversing it using string functions"
+
 puts '17) Find the length of string 1 & 2.'
+puts "Length of string1: #{string1.length}\nLength of string2: #{string2.length}"
+
+puts '21) write regex for email for only weboniselab domain'
+puts '/^[a-z][a-z0-9_\-.]+@weboniselab\.com$/i'
+
+puts "22) write regex for phone no format : '+78' followed by 8 nos. e.g. +7898328732"
+puts '/^\+78\d{8}$/'
 
 =begin
 18) Compare two dates. (12-04-2010 & 12-05-2011). Calculate the days between these two dates.
 19) Print date after 20 days from current date
 20) Print date in array format.
-21) write regex for email for only weboniselab domain
-22) write regex for phone no format : '+78' followed by 8 nos. 
-e.g. +7898328732
 23) finding site name and type from a url string using regex
  http://www.xyz.com/classid/17950142?type=mandatory
 24) write regex for this format
