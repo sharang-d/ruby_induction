@@ -107,7 +107,7 @@ puts "Protocol: #{matches[0]}\nName: #{matches[1]}\nType: #{matches[2]}"
 puts '24) write regex for this format: a.bcdef0000000000000e+05'
 puts '/^\d\.\d{5}0{13}e\+05$/'
 
-=begin
-25) Write Regex for Following date format
-e.g 1) 11th Nov 2013 12:34:46 ,e.g 2) 1st Dec 2010 8:59:43
-=end
+puts '25) Write Regex for Following date format
+e.g 1) 11th Nov 2013 12:34:46 ,e.g 2) 1st Dec 2010 8:59:43'
+# Doesn't validate the date. Just matches the pattern
+puts '/^\d{1,2}[a-z]{2} [a-z]{3} \d{4} \d{1,2}:\d{2}:\d{2}$/i'
