@@ -28,11 +28,9 @@ end
 
 puts "Value returned when proc_inside is called: #{proc_inside}"
 puts "Value returned when lambda_inside is called: #{lambda_inside}"
-print '- This shows that Procs return from the method from where they are invok'
-puts 'ed when a "return"'
-print 'is encountered whereas lamdbas just continue execution from where they w'
-puts 'ere invoked'
-print '- Another difference between Procs and Lambdas is that Lambdas throw an E'
-puts 'xception when the'
-print "number of arguments passed don't match the number of arguments specified"
-puts ' in the lambda body'
+puts '- This shows that Procs return from the method from where they are' \
+  + ' invoked when a "return" is encountered whereas lamdbas just continue ' \
+  + 'execution from where they were invoked'
+puts '- Another difference between Procs and Lambdas is that Lambdas throw' \
+  + " an exception when the number of arguments passed don't match the number"\
+  + ' of arguments specified in the lambda body'

@@ -37,16 +37,16 @@ def print_words(iterator = @words.size.pred)
   end
 end
 
-string1 = 'RUBY parses a file by looking for <br/> one of the special tags tha'
-string1 << 't tells it to start interpreting the text as RUBY code. The parser'
-string1 << ' then executes all of the code it finds until it runs into a RUBY '
-string1 << 'closing <br/> tag.'
+string1 = 'RUBY parses a file by looking for <br/> one of the special tags' \
+  + ' that tells it to start interpreting the text as RUBY code. The parser' \
+  + ' then executes all of the code it finds until it runs into a RUBY ' \
+  + 'closing <br/> tag.'
 
 puts "string1 = #{string1}"
 
-string2 = 'RUBY does not require (or support) explicit type definition in vari'
-string2 << "able declaration; a variable's type is determined by the context i"
-string2 << 'n which the variable is used.'
+string2 = 'RUBY does not require (or support) explicit type definition in' \
+  + " variable declaration; a variable's type is determined by the context" \
+  + ' in which the variable is used.'
 
 puts "string2 = #{string2}"
 
