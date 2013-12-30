@@ -1,4 +1,4 @@
-def is_kaprekar?(number)
+def kaprekar?(number)
   length = number.to_s.length
   square = number ** 2
   parts = square.to_s.scan(Regexp.new('(.*)(.{' + length.to_s + '})')).flatten
@@ -8,4 +8,4 @@ end
 
 print 'Enter a positive integer: '
 number = gets.strip.to_i
-puts "#{number} is#{' not' if !is_kaprekar?(number)} a Kaprekar number"
+puts "#{number} is#{' not' if !kaprekar?(number)} a Kaprekar number"
