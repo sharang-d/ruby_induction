@@ -21,7 +21,9 @@ def make_parts(string1, number_of_parts)
   parts = (1..number_of_parts).to_a.map do |part_number| 
     string1[(part_number.pred * part_size)..((part_number * part_size).pred)] 
   end
-  parts[number_of_parts.pred] << string1[(number_of_parts * part_size)..((number_of_parts * part_size) + extra_chars)]
+  range_start = (number_of_parts * part_size)
+  range_end = (number_of_parts * part_size) + extra_chars
+  parts[number_of_parts.pred] << string1[range_start..range_end]
   parts
 end
 
@@ -35,9 +37,18 @@ def print_words(iterator = @words.size.pred)
   end
 end
 
-puts "string1 = #{string1 = 'RUBY parses a file by looking for <br/> one of the special tags that tells it to start interpreting the text as RUBY code. The parser then executes all of the code it finds until it runs into a RUBY closing <br/> tag.'}"
+string1 = 'RUBY parses a file by looking for <br/> one of the special tags tha'
+string1 << 't tells it to start interpreting the text as RUBY code. The parser'
+string1 << ' then executes all of the code it finds until it runs into a RUBY '
+string1 << 'closing <br/> tag.'
 
-puts "string2 = #{string2 = "RUBY does not require (or support) explicit type definition in variable declaration; a variable's type is determined by the context in which the variable is used."}"
+puts "string1 = #{string1}"
+
+string2 = 'RUBY does not require (or support) explicit type definition in vari'
+string2 << "able declaration; a variable's type is determined by the context i"
+string2 << 'n which the variable is used.'
+
+puts "string2 = #{string2}"
 
 puts '5) Find occurrence of RUBY from string 1.'
 p string1.scan(/RUBY/)
@@ -45,7 +56,8 @@ p string1.scan(/RUBY/)
 print "6) Find the positions where RUBY occurs in the string 1.\nPositions: "
 string1.scan(/RUBY/) { print "#{Regexp.last_match.offset(0).first} " }
 
-puts "\n7) Create array of words in string 1 & print them using a recursive function."
+print "\n7) Create array of words in string 1 & print them using a recursive" 
+puts 'function.'
 @words = string1.split
 print_words
 
@@ -67,23 +79,33 @@ puts (Time.now + (60 * 60 * 24 * 7)).strftime('%d %B %Y')
 
 puts '13) Cut the string 1 into 4 parts & print it.'
 # cut into 4 parts with equal character count
-make_parts(string1, 4).each.with_index(1) { |part, index| puts "Part #{index}: #{part}" }
+make_parts(string1, 4).each.with_index(1) do |part, index| 
+  puts "Part #{index}: #{part}" 
+end
 
-puts "14) Divide the string 1 by occurrences of '.'. Combine the array in reverse word sequence"
-puts make_parts(string1, string1.count('.')).map { |part| part.split.reverse.join(' ') }.join
+print "14) Divide the string 1 by occurrences of '.'."
+puts " Combine the array in reverse word sequence"
+parts = make_parts(string1, string1.count('.')).map do |part|
+  part.split.reverse.join(' ') 
+end
+puts parts.join
 
 puts '15) Remove the HTML characters from string.'
 puts "String1 with HTML tags removed: #{string1.gsub('<br/>','')}"
 
-puts "16) Print the 'RUBY' word from string 1 by traversing it using string functions"
+print "16) Print the 'RUBY' word from string 1 by traversing it using string "
+puts "functions"
 # considering "RUBY" to be an independent word and not a part of a word
 string1.split.each { |word| puts word if word=='RUBY' }
 
 puts '17) Find the length of string 1 & 2.'
-puts "Length of string1: #{string1.length}\nLength of string2: #{string2.length}"
+puts "Length of string1: #{string1.length}"
+puts "Length of string2: #{string2.length}"
 
-puts '18) Compare two dates. (12-04-2010 & 12-05-2011). Calculate the days between these two dates.'
-puts "Number of days in between: #{(Date.parse('12-05-2011') - Date.parse('12-04-2010')).to_i}"
+print '18) Compare two dates. (12-04-2010 & 12-05-2011).'
+puts 'Calculate the days between these two dates.'
+print "Number of days in between: "
+puts #{(Date.parse('12-05-2011') - Date.parse('12-04-2010')).to_i}"
 
 puts '19) Print date after 20 days from current date'
 puts (Time.now + (60 * 60 * 24 * 20)).strftime('%d %B %Y')
@@ -95,7 +117,8 @@ p [today.day, today.month, today.year]
 puts '21) write regex for email for only weboniselab domain'
 puts '/^[a-z][a-z0-9_\-.]+@weboniselab\.com$/i'
 
-puts "22) write regex for phone no format : '+78' followed by 8 nos. e.g. +7898328732"
+print "22) write regex for phone no format : '+78' followed by 8 nos. e.g. "
+puts '+7898328732'
 puts '/^\+78\d{8}$/'
 
 puts '23) finding site name and type from a url string using regex
