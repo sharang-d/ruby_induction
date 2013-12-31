@@ -6,7 +6,7 @@ class Product
     @id = @name = @price = @count = @company = nil
   end 
 
-  attr_accessor :id, :name, :price, :count, :company
+  attr_reader :id, :name, :price, :count, :company
 
   def add_product
     id = get_max_id.succ
@@ -49,7 +49,7 @@ class Product
 
   def self.remove_product(id)
     return if !File.exists?('inventory')
-    temp = Tempfile.new
+    temp = Tempfile.new('inventory')
     File.open('inventory', 'r') do |file|
       line = file.readline
       line.match(/^id: (.*)/)

@@ -1,6 +1,6 @@
 require_relative 'product.rb'
 class Shopkeeper
-  
+
   def add_product
     puts 'Enter details of for the product that you want to add'
     print 'Name: '
@@ -18,7 +18,7 @@ class Shopkeeper
 
   def remove_product
     print 'Enter product id of the product that you wish to remove: '
-    id = gets.strip
-    Product p = Product.find_product(id);
+    id = gets.strip.to_i
+    Product.remove_product(id);
   end
 end
