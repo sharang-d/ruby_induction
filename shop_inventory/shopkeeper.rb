@@ -10,11 +10,14 @@ class Shopkeeper
     count = gets.strip
     print 'Manufacturer: '
     company = gets.strip
-    Product.new(name, price, count, company).add_product
+    p = Product.new
+    p.set(name, price, count, company)
+    p.add_product
   end
 
   def remove_product
     print 'Enter product id of the product that you wish to remove: '
     id = gets.strip
-    
+    Product p = Product.find_product(id);
+  end
 end
