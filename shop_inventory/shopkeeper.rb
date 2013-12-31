@@ -1,5 +1,6 @@
 require_relative 'product.rb'
 class Shopkeeper
+  
   def add_product
     puts 'Enter details of for the product that you want to add'
     print 'Name: '
