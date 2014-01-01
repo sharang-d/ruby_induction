@@ -68,4 +68,24 @@ class Product
     temp.close
     FileUtils.mv(temp.path, 'inventory')
   end
+
+  def self.search_product(name)
+    return "No results" if !File.exists?('inventory')
+    result = ''
+    File.open('inventory', 'r') do |file|
+      file.readline
+      until(file.eof?)
+        line = file.readline
+        temp_name = line.match(/^name: (.*)/)[1]
+        if temp_name.casecmp(name).zero?
+          result << line 
+          3.times { result << file.readline }
+          break
+        else
+          4.times { file.readline }
+        end
+      end
+    end
+    result == '' ? 'No results' : result
+  end
 end

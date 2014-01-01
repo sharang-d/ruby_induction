@@ -21,4 +21,9 @@ class Shopkeeper
     id = gets.strip.to_i
     Product.remove_product(id);
   end
+
+  def search_product
+    puts 'Enter name of the product you wish to search for: '
+    Product.search_product(gets.strip)
+  end
 end
