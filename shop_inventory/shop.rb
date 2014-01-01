@@ -4,7 +4,7 @@ customer = Customer.new
 shopkeeper = Shopkeeper.new
 STDOUT.sync = true
 print "Press 1 if you are the shopkeeper
-Anything else if you are a customer "
+Anything else if you are a customer: "
 if(gets.strip == '1')
   loop do
     puts 'Enter 1 to add a new product'
@@ -12,7 +12,9 @@ if(gets.strip == '1')
     puts 'Enter 3 to list all products'
     puts 'Enter 4 to search a product'
     puts 'Enter 5 to edit a product entry'
-    choice = gets.strip.to_i
+    puts 'Enter 6 to quit: '
+    print 'Your choice: '
+    choice = gets.to_i
     case choice
     when 1
       shopkeeper.add_product
@@ -20,12 +22,13 @@ if(gets.strip == '1')
       shopkeeper.remove_product
     when 3
     when 4
-      puts shopkeeper.search_product
+      result = shopkeeper.search_product
+      puts result.nil? ? 'No results' : result
     when 5
-
+      puts shopkeeper.edit_product
+    when 6
+      break
     end
-    print "Enter 'exit' to quit: "
-    break if gets.strip.casecmp('exit').zero?
   end
 else
   loop do

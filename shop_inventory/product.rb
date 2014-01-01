@@ -2,14 +2,9 @@ require 'fileutils'
 require 'tempfile'
 
 class Product
-  def initialize
-    @id = @name = @price = @count = @company = nil
-  end 
 
-  attr_reader :id, :name, :price, :count, :company
-
-  def add_product
-    id = get_max_id.succ
+  def self.add_product(name, price, count, company, id = false)
+    id = id ? id : get_max_id.succ
     File.open('inventory', 'a') do |file|
       file.puts "id: #{id}"
       file.puts "name: #{name}"
@@ -19,20 +14,7 @@ class Product
     end
   end
 
-  def self.find_product
-    product = nil
-
-    product
-  end
-
-  def set(name, price, count, company)
-    @name = name
-    @price = price
-    @count = count
-    @company = company
-  end
-
-  def get_max_id
+  def self.get_max_id
     max = 0
     return max if !File.exists?('inventory')
     File.open('inventory', 'r') do |file|
@@ -47,7 +29,8 @@ class Product
   end
   
   def self.remove_product(id)
-    return if !File.exists?('inventory')
+    return nil if !File.exists?('inventory')
+    flag = false
     temp = Tempfile.new('inventory')
     File.open('inventory', 'r') do |file|
       until(file.eof?)
@@ -60,32 +43,58 @@ class Product
           temp << file.readline
           temp << file.readline
           temp << file.readline
+          flag = true
         else
           4.times { file.readline }
         end
       end
     end
     temp.close
-    FileUtils.mv(temp.path, 'inventory')
+    if flag
+      FileUtils.mv(temp.path, 'inventory')
+      true
+    else
+      nil
+    end
   end
 
-  def self.search_product(name)
-    return "No results" if !File.exists?('inventory')
+  def self.search_product_by_name(name)
+    return nil if !File.exists?('inventory')
     result = ''
     File.open('inventory', 'r') do |file|
       file.readline
       until(file.eof?)
-        line = file.readline
+        puts line = file.readline
         temp_name = line.match(/^name: (.*)/)[1]
         if temp_name.casecmp(name).zero?
+          puts 'in'
           result << line 
           3.times { result << file.readline }
+          break
+        else
+          4.times { puts file.readline }
+        end
+      end
+    end
+    result == '' ? nil : result
+  end
+
+  def self.search_product_by_id(id)
+    return nil if !File.exists?('inventory')
+    result = ''
+    File.open('inventory', 'r') do |file|
+      until(file.eof?)
+        line = file.readline
+        temp_id = line.match(/^id: (.*)/)[1]
+        if temp_id.to_i == id
+          4.times { result << file.readline }
           break
         else
           4.times { file.readline }
         end
       end
-    end
-    result == '' ? 'No results' : result
+    end 
+    result == '' ? nil : result
   end
+
 end
