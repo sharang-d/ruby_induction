@@ -1,4 +1,4 @@
-require_relative 'product.rb'
+require_relative 'product'
 class Shopkeeper
 
   def add_product

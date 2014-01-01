@@ -64,15 +64,14 @@ class Product
     File.open('inventory', 'r') do |file|
       file.readline
       until(file.eof?)
-        puts line = file.readline
+        line = file.readline
         temp_name = line.match(/^name: (.*)/)[1]
         if temp_name.casecmp(name).zero?
-          puts 'in'
           result << line 
           3.times { result << file.readline }
           break
         else
-          4.times { puts file.readline }
+          4.times { file.readline }
         end
       end
     end

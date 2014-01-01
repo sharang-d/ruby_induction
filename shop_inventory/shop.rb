@@ -1,5 +1,5 @@
-require_relative 'shopkeeper.rb'
-require_relative 'customer.rb'
+require_relative 'shopkeeper'
+require_relative 'customer'
 customer = Customer.new
 shopkeeper = Shopkeeper.new
 STDOUT.sync = true
@@ -33,8 +33,20 @@ if(gets.strip == '1')
   end
 else
   loop do
-
-    break if true
-    
+    puts 'Enter 1 to list all products'
+    puts 'Enter 2 to search a product'
+    puts 'Enter 3 to buy a product'
+    puts 'Enter 4 to quit: '
+    print 'Your choice: '
+    choice = gets.to_i
+    case choice
+    when 1
+      puts customer.list_all_products
+    when 2
+      puts customer.search_product_by_name
+    when 3
+    when 4
+      break
+    end
   end
 end
