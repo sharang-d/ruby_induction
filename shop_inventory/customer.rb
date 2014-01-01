@@ -3,12 +3,12 @@ require 'fileutils'
 require 'tempfile'
 
 class Customer
+	
+  include ProductActions
 
-	include ProductActions
-
-	def buy_product
-		print 'Enter the product id of the item that you want to buy: '
-		id = gets.to_i
+  def buy_product
+    print 'Enter the product id of the item that you want to buy: '
+    id = gets.to_i
     if id_exists?(id)
       if in_stock?(id)
         puts 'in stock'
