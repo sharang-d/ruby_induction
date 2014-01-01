@@ -1,7 +1,7 @@
 module ProductActions
 
-  def list_all_products
-    result 'No results' if !File.exists?('inventory')
+  def get_all_products
+    return 'No results' if !File.exists?('inventory')
     result = File.read('inventory') 
     result ? result : 'No results'
   end
@@ -9,7 +9,10 @@ module ProductActions
   def search_product_by_name
     print 'Enter name of the product you wish to search for: '
     name = gets.strip
-    return 'No results' if !File.exists?('inventory')
+    if !File.exists?('inventory')
+      puts 'No results'
+      return
+    end
     result = ''
     File.open('inventory', 'r') do |file|
       until(file.eof?)
@@ -25,7 +28,7 @@ module ProductActions
         end
       end
     end
-    result == '' ? 'No results' : result
+    puts result == '' ? 'No results' : result
   end
 
   def id_exists?(id)

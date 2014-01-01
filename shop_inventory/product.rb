@@ -13,20 +13,6 @@ class Product
       file.puts "company: #{company}"
     end
   end
-
-  def self.get_max_id
-    max = 0
-    return max if !File.exists?('inventory')
-    File.open('inventory', 'r') do |file|
-      until(file.eof?)
-        line = file.readline
-        temp_id = line.match(/^id: (.*)/)[1].to_i
-        max = temp_id if temp_id > max
-        4.times { file.readline }
-      end
-    end
-    max
-  end
   
   def self.remove_product(id)
     return if !File.exists?('inventory')
@@ -57,7 +43,7 @@ class Product
     end
   end
 
-  def self.search_product_by_id(id)
+  def self.get_product_by_id(id)
     return nil if !File.exists?('inventory')
     result = ''
     File.open('inventory', 'r') do |file|
@@ -73,6 +59,21 @@ class Product
       end
     end 
     result == '' ? nil : result
+  end
+
+  private
+  def self.get_max_id
+    max = 0
+    return max if !File.exists?('inventory')
+    File.open('inventory', 'r') do |file|
+      until(file.eof?)
+        line = file.readline
+        temp_id = line.match(/^id: (.*)/)[1].to_i
+        max = temp_id if temp_id > max
+        4.times { file.readline }
+      end
+    end
+    max
   end
 
 end

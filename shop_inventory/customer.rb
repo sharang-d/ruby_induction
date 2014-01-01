@@ -32,7 +32,7 @@ class Customer
             temp_file << line
             2.times { temp_file << file.readline }
             if temp_id == id
-              temp_count = file.readline.match(/^count: (.*)/)[1].to_i
+              temp_count = file.readline.match(/^count: (\d+)/)[1].to_i
               temp_file.puts "count: #{temp_count.pred}"
             else  
               temp_file << file.readline

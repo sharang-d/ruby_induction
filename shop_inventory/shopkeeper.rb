@@ -32,7 +32,7 @@ class Shopkeeper
   def edit_product
     print 'Enter id of the product that you wish to edit: '
     id = gets.to_i
-    if result = Product.search_product_by_id(id)
+    if result = Product.get_product_by_id(id)
       puts "Old entry: #{result}"
       puts "Enter new details: "
       print 'Name: '

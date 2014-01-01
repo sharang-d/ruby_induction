@@ -15,7 +15,7 @@ if(gets.strip == '1')
     puts 'Enter 3 to list all products'
     puts 'Enter 4 to search a product'
     puts 'Enter 5 to edit a product entry'
-    puts 'Enter 6 to quit: '
+    puts 'Enter 6 to quit'
     print 'Your choice: '
     choice = gets.to_i
     case choice
@@ -24,9 +24,9 @@ if(gets.strip == '1')
     when 2
       shopkeeper.remove_product
     when 3
-      puts shopkeeper.list_all_products
+      puts shopkeeper.get_all_products
     when 4
-      puts  shopkeeper.search_product_by_name
+      shopkeeper.search_product_by_name
     when 5
       puts shopkeeper.edit_product
     when 6
@@ -38,14 +38,14 @@ else
     puts 'Enter 1 to list all products'
     puts 'Enter 2 to search a product'
     puts 'Enter 3 to buy a product'
-    puts 'Enter 4 to quit: '
+    puts 'Enter 4 to quit'
     print 'Your choice: '
     choice = gets.to_i
     case choice
     when 1
-      puts customer.list_all_products
+      puts customer.get_all_products
     when 2
-      puts customer.search_product_by_name
+      customer.search_product_by_name
     when 3
       customer.buy_product
     when 4
