@@ -36,34 +36,36 @@ class Product
     max = 0
     return max if !File.exists?('inventory')
     File.open('inventory', 'r') do |file|
-      line = file.readline
-      if line.match(/^id: (.*)/)
-        temp_id = $1.to_i
+      until(file.eof?)
+        line = file.readline
+        temp_id = line.match(/^id: (.*)/)[1].to_i
         max = temp_id if temp_id > max
-      else
         4.times { file.readline }
       end
     end
     max
   end
-
+  
   def self.remove_product(id)
     return if !File.exists?('inventory')
     temp = Tempfile.new('inventory')
     File.open('inventory', 'r') do |file|
-      line = file.readline
-      line.match(/^id: (.*)/)
-      temp_id = $1.to_i
-      if temp_id != id
-        temp << line
-        temp << file.readline
-        temp << file.readline
-        temp << file.readline
-        temp << file.readline
-      else
-        4.times { file.readline }
+      until(file.eof?)
+        line = file.readline
+        line.match(/^id: (.*)/)
+        temp_id = $1.to_i
+        if temp_id != id
+          temp << line
+          temp << file.readline
+          temp << file.readline
+          temp << file.readline
+          temp << file.readline
+        else
+          4.times { file.readline }
+        end
       end
     end
+    temp.close
     FileUtils.mv(temp.path, 'inventory')
   end
 end
