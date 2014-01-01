@@ -12,8 +12,8 @@ module ProductActions
     return 'No results' if !File.exists?('inventory')
     result = ''
     File.open('inventory', 'r') do |file|
-      file.readline
       until(file.eof?)
+        file.readline
         line = file.readline
         temp_name = line.match(/^name: (.*)/)[1]
         if temp_name.casecmp(name).zero?
@@ -21,7 +21,7 @@ module ProductActions
           3.times { result << file.readline }
           break
         else
-          4.times { file.readline }
+          3.times { file.readline }
         end
       end
     end

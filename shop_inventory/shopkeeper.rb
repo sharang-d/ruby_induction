@@ -1,5 +1,9 @@
 require_relative 'product'
+require_relative 'productactions'
+
 class Shopkeeper
+
+  include ProductActions
 
   def add_product
     puts 'Enter details of for the product that you want to add'
@@ -17,13 +21,12 @@ class Shopkeeper
   def remove_product
     print 'Enter product id of the product that you wish to remove: '
     id = gets.to_i
-    details = Product.remove_product(id)
-    puts details.nil? ? "No results" : details 
-  end
-
-  def search_product
-    print 'Enter name of the product you wish to search for: '
-    details = Product.search_product_by_name(gets.strip)
+    if !id_exists?(id)
+      puts 'Product does not exist'
+      return
+    end
+    Product.remove_product(id)
+    puts 'Success' 
   end
 
   def edit_product
@@ -47,11 +50,5 @@ class Shopkeeper
       "Invalid Product Id"
     end
   end
-
-  def list_all_products
-    result = Product.list_all_products
-    result ? result : 'No results'
-  end
-
 
 end

@@ -1,6 +1,7 @@
 require_relative 'productactions'
 require 'fileutils'
 require 'tempfile'
+
 class Customer
 
 	include ProductActions
@@ -66,11 +67,6 @@ class Customer
         end
       end
     end 
-  end
-
-  def decrement_count(id)
-
-
   end
 
 end

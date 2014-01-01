@@ -1,8 +1,11 @@
 require_relative 'shopkeeper'
 require_relative 'customer'
+
 customer = Customer.new
 shopkeeper = Shopkeeper.new
+
 STDOUT.sync = true
+
 print "Press 1 if you are the shopkeeper
 Anything else if you are a customer: "
 if(gets.strip == '1')
@@ -23,8 +26,7 @@ if(gets.strip == '1')
     when 3
       puts shopkeeper.list_all_products
     when 4
-      result = shopkeeper.search_product
-      puts result.nil? ? 'No results' : result
+      puts  shopkeeper.search_product_by_name
     when 5
       puts shopkeeper.edit_product
     when 6

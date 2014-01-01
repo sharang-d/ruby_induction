@@ -3,7 +3,7 @@ require 'tempfile'
 
 class Product
 
-  def self.add_product(name, price, count, company, id = false)
+  def self.add_product(name, price, count, company, id = nil)
     id = id ? id : get_max_id.succ
     File.open('inventory', 'a') do |file|
       file.puts "id: #{id}"
@@ -29,7 +29,7 @@ class Product
   end
   
   def self.remove_product(id)
-    return nil if !File.exists?('inventory')
+    return if !File.exists?('inventory')
     flag = false
     temp = Tempfile.new('inventory_temp')
     File.open('inventory', 'r') do |file|
@@ -52,31 +52,9 @@ class Product
     temp.close
     if flag
       FileUtils.mv(temp.path, 'inventory')
-      true
     else
       temp.unlink
-      nil
     end
-  end
-
-  def self.search_product_by_name(name)
-    return nil if !File.exists?('inventory')
-    result = ''
-    File.open('inventory', 'r') do |file|
-      file.readline
-      until(file.eof?)
-        line = file.readline
-        temp_name = line.match(/^name: (.*)/)[1]
-        if temp_name.casecmp(name).zero?
-          result << line 
-          3.times { result << file.readline }
-          break
-        else
-          4.times { file.readline }
-        end
-      end
-    end
-    result == '' ? nil : result
   end
 
   def self.search_product_by_id(id)
@@ -95,13 +73,6 @@ class Product
       end
     end 
     result == '' ? nil : result
-  end
-
-  def self.list_all_products
-    result nil if !File.exists?('inventory')
-    result = ''
-    result = File.read('inventory') 
-    result ? result : 'No results'
   end
 
 end
