@@ -31,7 +31,7 @@ class Product
   def self.remove_product(id)
     return nil if !File.exists?('inventory')
     flag = false
-    temp = Tempfile.new('inventory')
+    temp = Tempfile.new('inventory_temp')
     File.open('inventory', 'r') do |file|
       until(file.eof?)
         line = file.readline
@@ -54,6 +54,7 @@ class Product
       FileUtils.mv(temp.path, 'inventory')
       true
     else
+      temp.unlink
       nil
     end
   end

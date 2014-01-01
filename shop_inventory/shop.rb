@@ -45,6 +45,7 @@ else
     when 2
       puts customer.search_product_by_name
     when 3
+      customer.buy_product
     when 4
       break
     end
