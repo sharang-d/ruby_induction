@@ -48,4 +48,10 @@ class Shopkeeper
     end
   end
 
+  def list_all_products
+    result = Product.list_all_products
+    result ? result : 'No results'
+  end
+
+
 end

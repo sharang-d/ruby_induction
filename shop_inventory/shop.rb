@@ -21,6 +21,7 @@ if(gets.strip == '1')
     when 2
       shopkeeper.remove_product
     when 3
+      puts shopkeeper.list_all_products
     when 4
       result = shopkeeper.search_product
       puts result.nil? ? 'No results' : result

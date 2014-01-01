@@ -97,4 +97,11 @@ class Product
     result == '' ? nil : result
   end
 
+  def self.list_all_products
+    result nil if !File.exists?('inventory')
+    result = ''
+    result = File.read('inventory') 
+    result ? result : 'No results'
+  end
+
 end
