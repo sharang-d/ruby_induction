@@ -19,11 +19,10 @@ module ProductActions
         id_line = file.readline
         line = file.readline
         temp_name = line.match(/^name: (.*)/)[1]
-        if temp_name.casecmp(name).zero?
+        if temp_name.downcase.include?(name.downcase)
           result << id_line
           result << line 
           3.times { result << file.readline }
-          break
         else
           3.times { file.readline }
         end

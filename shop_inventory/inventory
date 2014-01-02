@@ -18,3 +18,8 @@ name: Nirma
 price: 100
 count: 10
 company: Washing Powder Nirma
+id: 5
+name: air
+price: 100
+count: 1000
+company: test
