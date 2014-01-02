@@ -16,10 +16,11 @@ module ProductActions
     result = ''
     File.open('inventory', 'r') do |file|
       until(file.eof?)
-        file.readline
+        id_line = file.readline
         line = file.readline
         temp_name = line.match(/^name: (.*)/)[1]
         if temp_name.casecmp(name).zero?
+          result << id_line
           result << line 
           3.times { result << file.readline }
           break
